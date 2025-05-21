@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Apartments</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">Listings</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <a href="tel:+1234567890" class="call-sales">Call us</a>
+      <a href="contact.html" class="try-free">Property Support</a>
+    </div>
+  </header>
+
+  <style>
+    /* Container for the image slideshow on the side */
+    .hero-image {
+        position: fixed; /* Fix sa gilid ng screen */
+        top: 50%;
+        left: 0; /* Sa kaliwang gilid, palitan ng `right: 0` kung gusto mo sa kanan */
+        transform: translateY(-50%); /* Center-align vertically */
+        width: 200px; /* Ang lapad ng image container */
+        height: auto;
+        z-index: 10; /* Siguraduhing nasa ibabaw ng ibang content */
+        opacity: 0.8; /* Bahagyang transparent */
+        cursor: pointer; /* I-indicate na pwedeng i-hover */
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .slide img {
+        width: 100%;  /* Fit ang image sa container */
+        height: auto; /* Panatilihin ang aspect ratio ng image */
+        border-radius: 8px; /* Optional: Round corners */
+        transition: opacity 1s ease; /* Smooth transition */
+    }
+
+    .slide {
+        display: none;   /* Tago ang mga slide by default */
+        width: 100%;     /* Fit the image inside the container */
+        height: auto;    /* Preserve aspect ratio */
+    }
+
+    .hero-image:hover .slideshow-container {
+        opacity: 1; /* Ipakita ang slideshow kapag naka-hover */
+    }
+
+    .hero-image:not(:hover) .slideshow-container {
+        opacity: 0; /* Itago ang slideshow kapag wala sa hover */
+    }
+
+    .hero-image:hover {
+        opacity: 1;  /* Highlight the image container */
+    }
+
+    .limited-time {
+        font-weight: bold;
+        color: #ff0000;
+    }
+
+    /* Additional styling for the content */
+    .hero-content {
+        margin-left: 250px; /* Para hindi matakpan ng slideshow sa gilid */
+    }
+</style>
+</head>
+<body>
+
+<section class="hero">
+<div class="hero-content">
+    <h1>Find Your Dream Apartment Today</h1>
+    <div class="offer">
+        <span class="limited-time">Limited Time Offer</span>
+        <h2>Get 1 Month Free on Select Apartments</h2>
+        <a href="listings.html" class="btn">Explore Listings</a>
+    </div>
+
+    <!-- Slideshow Container -->
+    <div class="hero-image">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/s1.jpg" alt="Apartment View 1">
+            </div>
+            <div class="slide fade">
+                <img src="images/s2.jpg" alt="Apartment View 2">
+            </div>
+            <div class="slide fade">
+                <img src="images/s3.jpg" alt="Apartment View 3">
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- JavaScript -->
+<script>
+let slideIndex = 0;
+let slides;
+
+// Function to initialize slides and show the slideshow
+function initializeSlides() {
+    slides = document.querySelectorAll('.slide');
+    showSlides();  // Start showing slides automatically
+}
+
+// Function to change slides
+function showSlides() {
+    const activeSlides = document.querySelectorAll('.slide');
+
+    // Hide all slides by default
+    activeSlides.forEach((slide) => {
+        slide.style.display = "none"; 
+    });
+
+    slideIndex++;
+    if (slideIndex > activeSlides.length) {
+        slideIndex = 1;  // Reset the slide index if we reach the last slide
+    }
+
+    activeSlides[slideIndex - 1].style.display = "block";  // Show the current slide
+
+    // Change slides every 3 seconds
+    setTimeout(showSlides, 3000); 
+}
+
+// Initialize slides on window load
+window.onload = initializeSlides;
+</script>
+
+ 
+
+  <!-- Welcome Section (Introduction) -->
+  <section class="welcome">
+    <div class="welcome-content">
+      <h2>Welcome to Rental Apartments</h2>
+      <p>Looking for the perfect place to call home? Explore our curated listings of rental apartments in prime locations. Whether you're searching for a cozy apartment or a luxurious loft, we have something for everyone!</p>
+      <a href="listings.html" class="btn">Browse Listings</a>
+    </div>
+  </section>
+
+  <!-- Featured Property Section -->
+  <section class="featured">
+    <h2>Featured Property</h2>
+    <div class="featured-listing">
+      <img src="images/ft.jpg" alt="Featured Property">
+      <div class="featured-info">
+        <h3>Luxury Penthouse in Downtown</h3>
+        <p><strong>Price:</strong> $3,500/mo</p>
+        <p>This spacious penthouse offers breathtaking city views, modern amenities, and top-notch finishes. It’s perfect for those looking for an upscale living experience.</p>
+        <a href="listings.html" class="btn">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="reasons">
+      <div class="reason">
+        <img src="images/qs.jpg" alt="Quality Service">
+        <h3>Quality Service</h3>
+        <p>We offer top-tier apartments in prime locations, ensuring you get the best living experience.</p>
+      </div>
+      <div class="reason">
+        <img src="images/cs.jpg" alt="Customer Support">
+        <h3>24/7 Support</h3>
+        <p>Our team is available around the clock to assist with any inquiries or issues you might have.</p>
+      </div>
+      <div class="reason">
+        <img src="images/sc.jpg" alt="Secure Living">
+        <h3>Secure Living</h3>
+        <p>Your safety is our priority. Our properties offer secure living environments with advanced security systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">
+        <p>"The team at Rental Apartments made finding my new home so easy! They were professional and always available to answer questions."</p>
+        <p>- Jeban D.</p>
+      </div>
+      <div class="testimonial">
+        <p>"I love my new apartment! It's everything I wanted and more. I couldn't have asked for a better place to live."</p>
+        <p>- Rolly B.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action Section -->
+  <section class="cta">
+    <h2>Ready to Find Your New Home?</h2>
+    <p>Get in touch with us today to schedule a viewing or ask about available listings. We're here to help!</p>
+    <a href="contact.html" class="btn">Contact Us</a>
+  </section>
+
+</body>
+</html>

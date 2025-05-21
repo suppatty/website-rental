@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Apartments - Listings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function filterProperties() {
+      const selectedType = document.getElementById("property-type").value;
+      const listings = document.querySelectorAll(".listing");
+
+      listings.forEach(listing => {
+        if (selectedType === "all") {
+          listing.style.display = "block"; // Show all if "All Properties" selected
+        } else {
+          listing.style.display = listing.getAttribute("data-property-type") === selectedType ? "block" : "none";
+        }
+      });
+    }
+
+    function sortListings() {
+      const selectedSort = document.getElementById("sort").value;
+      const listings = document.querySelectorAll(".listing");
+      const listingArray = Array.from(listings);
+
+      if (selectedSort === "price-asc") {
+        listingArray.sort((a, b) => {
+          const priceA = parseInt(a.querySelector(".price").innerText.replace(/\D/g, ''));
+          const priceB = parseInt(b.querySelector(".price").innerText.replace(/\D/g, ''));
+          return priceA - priceB;
+        });
+      } else if (selectedSort === "price-desc") {
+        listingArray.sort((a, b) => {
+          const priceA = parseInt(a.querySelector(".price").innerText.replace(/\D/g, ''));
+          const priceB = parseInt(b.querySelector(".price").innerText.replace(/\D/g, ''));
+          return priceB - priceA;
+        });
+      }
+      
+      // Reorder the listings in the DOM
+      const container = document.querySelector(".listing-cards");
+      listingArray.forEach(listing => {
+        container.appendChild(listing);
+      });
+    }
+  </script>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="logo">
+      <img src="images/logo.jpg" alt="Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.html">Listings</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Listings Section -->
+  <section class="listings">
+    <h2>Featured Listings</h2>
+    
+    <!-- Property Type Filter Dropdown -->
+    <section class="filter-options">
+      <label for="property-type">Select Property Type:</label>
+      <select id="property-type" onchange="filterProperties()">
+        <option value="all">All Properties</option>
+        <option value="long-term">Long-Term Rentals</option>
+        <option value="short-term">Short-Term Rentals</option>
+      </select>
+    </section>
+
+    <!-- Sorting Options -->
+    <section class="sort-options">
+      <label for="sort">Sort By:</label>
+      <select id="sort" onchange="sortListings()">
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+      </select>
+    </section>
+
+    <!-- Listings Cards -->
+    <div class="listing-cards">
+
+      <!-- Listing 1 (Long-Term) -->
+      <div class="listing" data-property-type="long-term">
+        <img src="images/s1.jpg" alt="Apartment 1">
+        <h3>2-Bedroom in Downtown</h3>
+        <p class="price"><strong>Price:</strong> $1,500/mo</p>
+        
+        <!-- Rating -->
+        <div class="rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9734;</span>
+        </div>
+
+        <!-- Amenities -->
+        <div class="amenities">
+          <p><i class="icon wifi"></i> Wi-Fi</p>
+          <p><i class="icon ac"></i> Air Conditioning</p>
+          <p><i class="icon parking"></i> Parking</p>
+        </div>
+
+        <!-- Agent Info -->
+        <div class="agent-info">
+          <p><strong>Contact Agent:</strong> Rolly</p>
+          <p><strong>Phone:</strong> (123) 456-7890</p>
+        </div>
+
+        <!-- Buttons -->
+        <a href="details1.html" class="btn">View Details</a>
+        <a href="request-info.html" class="btn">Request Info</a>
+      </div>
+
+      <!-- Listing 2 (Short-Term) -->
+      <div class="listing" data-property-type="short-term">
+        <img src="images/s2.jpg" alt="Apartment 2">
+        <h3>1-Bedroom in the Suburbs</h3>
+        <p class="price"><strong>Price:</strong> $900/mo</p>
+
+        <!-- Rating -->
+        <div class="rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9734;</span>
+          <span class="star">&#9734;</span>
+        </div>
+
+        <!-- Amenities -->
+        <div class="amenities">
+          <p><i class="icon wifi"></i> Wi-Fi</p>
+          <p><i class="icon parking"></i> Parking</p>
+        </div>
+
+        <!-- Agent Info -->
+        <div class="agent-info">
+          <p><strong>Contact Agent:</strong> Jeban</p>
+          <p><strong>Phone:</strong> (987) 654-3210</p>
+        </div>
+
+        <!-- Buttons -->
+        <a href="details1.html" class="btn">View Details</a>
+        <a href="request-info.html" class="btn">Request Info</a>
+      </div>
+
+      <!-- Listing 3 (Long-Term) -->
+      <div class="listing" data-property-type="long-term">
+        <img src="images/s3.jpg" alt="Apartment 3">
+        <h3>Luxury Loft</h3>
+        <p class="price"><strong>Price:</strong> $2,500/mo</p>
+
+        <!-- Rating -->
+        <div class="rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </div>
+
+        <!-- Amenities -->
+        <div class="amenities">
+          <p><i class="icon wifi"></i> Wi-Fi</p>
+          <p><i class="icon ac"></i> Air Conditioning</p>
+          <p><i class="icon parking"></i> Parking</p>
+        </div>
+
+        <!-- Agent Info -->
+        <div class="agent-info">
+          <p><strong>Contact Agent:</strong> Patrick</p>
+          <p><strong>Phone:</strong> (555) 123-9876</p>
+        </div>
+
+        <!-- Buttons -->
+        <a href="details1.html" class="btn">View Details</a>
+        <a href="request-info.html" class="btn">Request Info</a>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
+
